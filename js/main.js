@@ -14,6 +14,7 @@ var SliderGallery = (function () {
     function cacheDom() {
         DOM.$navTab = $('.nav-tab_link');
         DOM.$slider = $(".slider .gallery_container");
+        DOM.$galleryItem = $(".gallery_item");
     }
     
     // bind events
@@ -23,6 +24,11 @@ var SliderGallery = (function () {
     
             changeGallery($button);
             changeSlider($button);
+        });
+        
+        DOM.$galleryItem.on("click", function () {
+            var $slide = $(this);
+            goToSlide($slide);
         });
     }
     
@@ -37,7 +43,7 @@ var SliderGallery = (function () {
     
     // handle click events
     function changeSlider($button) {
-        var gallery = "gallery_" + $button.data("gallery");
+        var gallery = $button.data("gallery");
         
         // destroy slide
         $('.slider').slick("unslick");
@@ -53,22 +59,21 @@ var SliderGallery = (function () {
     }
     
     function changeGallery($button) {
-        var gallery = "gallery_" + $button.data("gallery");
+        var gallery = $button.data("gallery");
         
         $(".gallery_wrapper .gallery_container").each(function (index) {
             $(this).css("display", "none");
             console.log(index + $(this) );
         });
-        // console.log(gallery);
         $(".gallery_wrapper ." + gallery).css("display", "block");
     }
     
-    function cloneGalleryToSlider(button) {
-        
+    function goToSlide($slide) {
+        var slideNumber = $slide.data("slide-number");
+        console.log(slideNumber);
+        $(".slider").slick("slickGoTo", slideNumber, false);
     }
-    
-    
-    
+
     
     
     /* =================== public methods ================== */

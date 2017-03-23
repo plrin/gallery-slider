@@ -5,7 +5,8 @@
     display: none; }
 .gallery_wrapper .gallery_item {
   display: inline-block;
-  width: 33.233333333333333%; }
+  width: 33.233333333333333%;
+  cursor: pointer; }
   .gallery_wrapper .gallery_item img {
     width: 100%;
     height: auto;
