@@ -1,0 +1,30 @@
+.slider-wrapper {
+
+  width: 90%;
+  margin: 0 auto;
+
+
+  .slick-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+
+  .slick-prev {
+    left: 0;
+  }
+
+  .slick-next {
+    right: 0;
+  }
+
+  .slick-slide {
+    height: auto;
+    background-color: aquamarine;
+
+    img {
+      margin: 0 auto;
+    }
+  }
+}

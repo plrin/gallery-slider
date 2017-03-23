@@ -1,13 +1,5 @@
 $(document).ready(function(){
     
-    console.log($(".gallery_dog"));
-    
-    $(".gallery_dog").clone().appendTo(".slider-wrapper").addClass("slider");
-    // $( ".hello" ).clone().appendTo( ".goodbye" );
-    
-
-    
-    
     SliderGallery.init();
         
 });
@@ -20,30 +12,55 @@ var SliderGallery = (function () {
     /* =================== private methods ================= */
     // cache DOM elements
     function cacheDom() {
-        DOM.$navTab = $('.nav-tab_list-item');
+        DOM.$navTab = $('.nav-tab_link');
         DOM.$slider = $(".slider .gallery_container");
     }
     
     // bind events
     function bindEvents() {
-        DOM.$navTab.on("click", changeSlider($(this)));
+        DOM.$navTab.on("click", function () {
+            var $button = $(this);
+    
+            changeGallery($button);
+            changeSlider($button);
+        });
     }
     
     function initSlider() {
         // to init slider we have to clone the first set of the gallery
+        $(".gallery_dogs").clone().appendTo(".slider-wrapper").addClass("slider");
         
-        
-        $('.slider').slick({});
+        $('.slider').slick();
     }
     
+    
+    
     // handle click events
-    function changeSlider(button) {
+    function changeSlider($button) {
+        var gallery = "gallery_" + $button.data("gallery");
         
         // destroy slide
+        $('.slider').slick("unslick");
+        
+        // remove old slider markup
+        $(".slider-wrapper").empty();
+        
+        // clone content from that nav tab
+        $("." + gallery).clone().appendTo(".slider-wrapper").addClass("slider");
         
         // re-init new slider
+        $('.slider').slick();
+    }
     
-        cloneGalleryToSlider(button);
+    function changeGallery($button) {
+        var gallery = "gallery_" + $button.data("gallery");
+        
+        $(".gallery_wrapper .gallery_container").each(function (index) {
+            $(this).css("display", "none");
+            console.log(index + $(this) );
+        });
+        // console.log(gallery);
+        $(".gallery_wrapper ." + gallery).css("display", "block");
     }
     
     function cloneGalleryToSlider(button) {

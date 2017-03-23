@@ -1,0 +1,25 @@
+.gallery_wrapper {
+
+  .gallery_container {
+
+    list-style: none;
+    font-size: 0;
+
+    &:not(:first-of-type) {
+      display: none;
+    }
+
+  }
+  .gallery_item {
+    display: inline-block;
+    width: 33.233333333333333%;
+
+    img {
+      width: 100%;
+      height: auto;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+  }
+
+}
